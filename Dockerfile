@@ -18,8 +18,10 @@ RUN cpan install common::sense
 RUN cpan install Linux::Inotify2
 
 # Timezone (no prompt)
+ARG TZ "Europe/Madrid"
+ENV tz=$TZ
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
-RUN echo "Europe/Madrid" > /etc/timezone
+RUN echo "$tz" > /etc/timezone
 RUN rm -f /etc/localtime
 RUN dpkg-reconfigure -f noninteractive tzdata
 
