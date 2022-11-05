@@ -12,8 +12,10 @@ COPY entrypoint.sh .
 RUN chmod a+x entrypoint.sh
 
 # Install packages
-RUN apt-get update && apt-get -y install vim unzip curl libfile-spec-native-perl
-RUN apt-get update && apt-get -y install build-essential sqlite3 perl-doc libdbi-perl libdbd-sqlite3-perl
+RUN apt-get update && apt-get -y --no-install-recommends install vim unzip curl libfile-spec-native-perl && \
+    rm -rf /var/lib/apt/lists
+RUN apt-get update && apt-get -y --no-install-recommends install build-essential sqlite3 perl-doc libdbi-perl libdbd-sqlite3-perl && \
+    rm -rf /var/lib/apt/lists
 RUN cpan install common::sense
 RUN cpan install Linux::Inotify2
 
