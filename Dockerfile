@@ -12,10 +12,8 @@ COPY entrypoint.sh .
 RUN chmod a+x entrypoint.sh
 
 # Install packages
-RUN apt-get update && apt-get install -y --no-install-recommends vim unzip curl libfile-spec-native-perl && \
-    rm -rf /var/lib/apt/lists
-RUN apt-get update && apt-get install -y --no-install-recommends build-essential sqlite3 perl-doc libdbi-perl libdbd-sqlite3-perl && \
-    rm -rf /var/lib/apt/lists
+RUN apt-get update && apt-get install -y vim unzip curl libfile-spec-native-perl
+RUN apt-get update && apt-get install -y build-essential sqlite3 perl-doc libdbi-perl libdbd-sqlite3-perl
 RUN cpan install common::sense
 RUN cpan install Linux::Inotify2
 
@@ -26,9 +24,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tz
 RUN echo "$tz" > /etc/timezone
 RUN rm -f /etc/localtime
 RUN dpkg-reconfigure -f noninteractive tzdata
-
-# Delete
-RUN rm -rf /var/lib/apt/lists
 
 # Install IDrive
 RUN curl -O https://www.idrivedownloads.com/downloads/linux/download-for-linux/LinuxScripts/IDriveForLinux.zip && \
