@@ -33,6 +33,10 @@ RUN rm IDriveForLinux.zip
 
 WORKDIR /work/IDriveForLinux/scripts
 
+# Link something
+RUN ln -s /work/IDriveForLinux/scripts/cron.pl /etc/idrivecron.pl
+COPY .serviceLocation .
+
 # Give execution rights
 RUN chmod a+x *.pl
 
