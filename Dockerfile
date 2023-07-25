@@ -27,7 +27,7 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Install IDrive
 RUN curl -O https://www.idrivedownloads.com/downloads/linux/download-for-linux/LinuxScripts/IDriveForLinux.zip && \
-    unzip IDriveForLinux.zip
+    unzip -o -q IDriveForLinux.zip
 
 RUN rm IDriveForLinux.zip
 
